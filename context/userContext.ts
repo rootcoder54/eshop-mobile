@@ -1,15 +1,16 @@
 import { createContext, useContext } from "react";
 
-export type Auth = {
-  isAuth: boolean;
+export interface Auth  {
+  isAuth: boolean,
   user?: {
-    username: string;
-    fullcomple: string;
-  };
+    username: string,
+    fullcomple: string,
+  },
+  login?:(username:string)=>void,
 };
 
 const defaultUser: Auth = {
-  isAuth: false
+  isAuth: false,
 };
 
 export const AuthContext = createContext<Auth>(defaultUser);

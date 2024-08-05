@@ -23,7 +23,7 @@ export default function HomeScreen() {
       />
       <ThemedText>{category}</ThemedText>
       <ThemedText> utilisateur est : {user.isAuth ? (
-        <ThemedText>Connecter</ThemedText>
+        <ThemedText>Connecter {user.user?.username}</ThemedText>
       ) : (
         <ThemedText>deconnecter</ThemedText>
       )}</ThemedText>
