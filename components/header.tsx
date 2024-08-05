@@ -60,7 +60,7 @@ const Header = ({ onCategoryChanged }: Props) => {
     selected?.measure((x) => {
       scrollRef.current?.scrollTo({ x: x - 16, y: 0, animated: true });
     });
-    //onCategoryChanged(categories[index].name);
+    onCategoryChanged(categories[index].name);
   };
 
   return (
@@ -69,7 +69,11 @@ const Header = ({ onCategoryChanged }: Props) => {
         <Link href={"/(modal)/search"} asChild>
           <TouchableOpacity>
             <ThemedView style={style.searchBtn}>
-              <Ionicons name="search" size={24} />
+              <Ionicons
+                name="search"
+                color={theme === "light" ? "#A2A0A2" : "#fff"}
+                size={24}
+              />
               <ThemedView>
                 <ThemedText style={{ fontFamily: "mon" }}>
                   Que cherchez vous ?
