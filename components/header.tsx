@@ -75,7 +75,7 @@ const Header = ({ onCategoryChanged }: Props) => {
                 size={24}
               />
               <ThemedView>
-                <ThemedText style={{ fontFamily: "mon" }}>
+                <ThemedText>
                   Que cherchez vous ?
                 </ThemedText>
               </ThemedView>

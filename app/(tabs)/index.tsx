@@ -1,6 +1,7 @@
 import Header from "@/components/header";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { useAuth } from "@/hooks/useAuth";
 import { Stack } from "expo-router";
 import { useState } from "react";
 
@@ -11,6 +12,8 @@ export default function HomeScreen() {
     setCategory(category);
   };
 
+  const user=useAuth()
+
   return (
     <ThemedView style={{ flex: 1 }}>
       <Stack.Screen
@@ -19,6 +22,11 @@ export default function HomeScreen() {
         }}
       />
       <ThemedText>{category}</ThemedText>
+      <ThemedText> utilisateur est : {user.isAuth ? (
+        <ThemedText>Connecter</ThemedText>
+      ) : (
+        <ThemedText>deconnecter</ThemedText>
+      )}</ThemedText>
     </ThemedView>
   );
 }

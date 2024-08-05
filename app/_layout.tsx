@@ -12,6 +12,8 @@ import "react-native-reanimated";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import AuthProvider from "@/components/provider/AuthProvider";
+import { Auth } from "@/context/userContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -31,21 +33,26 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
-  const router = useRouter();
+
+  const defaultUser: Auth = {
+    isAuth: false
+  };
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="(modal)/search"
-          options={{
-            presentation: "modal",
-            title: "Recherche",
-          }}
-        />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <AuthProvider value={defaultUser}>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="(modal)/search"
+            options={{
+              presentation: "modal",
+              title: "Recherche"
+            }}
+          />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
